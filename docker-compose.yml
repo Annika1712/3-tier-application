@@ -1,0 +1,29 @@
+---
+services:
+  
+  db:
+    image: postgres:latest
+    container_name: basic3tier
+    environment: 
+      POSTGRES_DB: basic3tier
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+    networks: 
+      - frontend
+
+  frontend-app:
+    build: ./ui
+    networks:
+      - frontend
+    ports: 
+      - "81:80"
+  
+  backend-app: 
+    build: ./api
+    networks:
+     - frontend
+    ports: 
+      - "82:80"
+       
+networks:
+  frontend: {}
