@@ -5,6 +5,7 @@ metadata:
   name: frontend-deployment
   labels:
     app: frontend
+  namespace: annika
 spec:
   replicas: 1
   selector:
@@ -16,9 +17,19 @@ spec:
       labels: 
         app: frontend
     spec:
+      volumes:
+        - name: config
+          configMap:
+            name: frontend-configmap
+            items: 
+              - key: config.json
+                path: config.json
       containers:
         - name: frontend
           image: annika1712/frontend:v1
           ports:
             - containerPort: 80
+          volumeMounts: 
+            - mountPath: /usr/share/nginx/html/configs
+              name: config
   

@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: frontend-configmap
+  namespace: annika
+data:
+  config.json: |
+    { 
+      "API_URL": "http://aa7e183974fd54de896b791899fc1795-1955576507.eu-central-1.elb.amazonaws.com/" 
+    }

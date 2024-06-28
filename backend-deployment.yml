@@ -5,6 +5,7 @@ metadata:
   name: backend-deployment
   labels:
     app: backend
+  namespace: annika
 spec:
   replicas: 3
   selector:

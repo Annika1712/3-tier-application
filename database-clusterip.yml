@@ -5,6 +5,7 @@ metadata:
   name: basic3tier
   labels:
     app: postgres
+  namespace: annika
 spec:
   type: ClusterIP
   selector:
