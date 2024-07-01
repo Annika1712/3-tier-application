@@ -2,9 +2,10 @@ variable "instance" {
   description = "Name of instances"
   type = map(object({
     subnet_name  = string
+    port_numbers = list(number)
     }
   ))
-  default = { "server" = { subnet_name = "subnet1" } }
+  default = { "server" = { subnet_name = "subnet1", port_numbers = [80] } }
 
 }
 

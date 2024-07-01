@@ -22,12 +22,15 @@ module "resource" {
   instance = {
     "frontend" = {
       subnet_name = "subnet1"
+      port_numbers = [80, 22]
     },
     "backend" = {
       subnet_name = "subnet2"
+      port_numbers = [80, 22]
     },
     "database" = {
       subnet_name = "subnet3"
+      port_numbers = [5432, 22]
   } }
 
   #Variables from module.main output
@@ -36,4 +39,9 @@ module "resource" {
   vpc          = module.main.vpc
   subnet       = module.main.subnet
 
+}
+
+output "ip" {
+  value = module.resource.ip
+  
 }
