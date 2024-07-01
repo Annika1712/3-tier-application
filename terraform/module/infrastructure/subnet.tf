@@ -8,8 +8,8 @@ data "aws_availability_zones" "filter_region" {
 }
 
 resource "aws_subnet" "main" {
-  #Create 3 subnets
-  count  = 3
+  count = var.subnet_count
+
   vpc_id = aws_vpc.main.id
 
   #Get the cidr_block from the vpc, move the netmask with 8 bits and specify the networknumber(countindex 1 will get networknumber 1)
