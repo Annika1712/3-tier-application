@@ -22,4 +22,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Basic3Tier.Core.Tests\Basic3Tier.Core.Tests.csproj" />
+    <ProjectReference Include="..\Basic3Tier.Infrastructure.Tests\Basic3Tier.Infrastructure.Tests.csproj" />
+  </ItemGroup>
+
 </Project>
