@@ -2,7 +2,7 @@ name: Build 3-tier-application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "docker-cicd" ]
 
 jobs:
   build:
