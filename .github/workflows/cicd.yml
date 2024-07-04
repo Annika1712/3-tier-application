@@ -65,9 +65,9 @@ jobs:
       - name: Apply database and backend kubernetes manifest files
         run: |
           kubectl apply -f database-clusterip.yml
-          apply -f database-deployment.yml
-          apply -f backend-loadbalancer.yml
-          apply -f backend-deployment.yml
+          kubectl apply -f database-deployment.yml
+          kubectl apply -f backend-loadbalancer.yml
+          kubectl apply -f backend-deployment.yml
       
       - name: Alter configmap and apply
         # sed breakdown: with s and the following character you indicate which symbol is used as a seperator. 
@@ -80,8 +80,8 @@ jobs:
 
       - name: Apply frontend kubernetes manifest files
         run: |
-          apply -f frontend-loadbalancer.yml
-          apply -f frontend-deployment.yml
+          kubectl apply -f frontend-loadbalancer.yml
+          kubectl apply -f frontend-deployment.yml
       
 
 
