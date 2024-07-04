@@ -5,6 +5,7 @@ metadata:
   name: database-deployment
   labels:
     app: postgres
+  namespace: annika
 spec:
   replicas: 1
   selector:
@@ -16,10 +17,6 @@ spec:
       labels:
         app: postgres
     spec: 
-      volumes:
-        - name: efs-pvc
-          persistentVolumeClaim:
-            claimName: efs-pvc-annika
       containers:
         - name: basic3tier
           image: postgres:latest
@@ -32,6 +29,3 @@ spec:
               value: admin123
           ports:
             - containerPort: 5432
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: efs-pvc
