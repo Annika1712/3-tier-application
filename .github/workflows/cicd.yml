@@ -42,7 +42,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/basic3tier-backend:latest
           build-args: |
-            SONAR_PRJ_KEY=3-tier-application-annika
+            SONAR_PRJ_KEY=annika-3-tier-application
             SONAR_TOKEN=${{secrets.SONAR_TOKEN}}
             SONAR_HOST=${{vars.SONAR_HOST}}
       
