@@ -2,7 +2,7 @@ name: Build 3-tier-application
 
 on:
   push:
-    branches: [ "docker-cicd" ]
+    branches: [ "docker-sonarqube-cicd" ]
 
 jobs:
   build:
@@ -41,6 +41,10 @@ jobs:
           context: ./api
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/basic3tier-backend:latest
+          build-args: |
+            SONAR_PRJ_KEY=3-tier-application-annika
+            SONAR_TOKEN=${{secrets.SONAR_TOKEN}}
+            SONAR_HOST=${{vars.SONAR_HOST}}
       
       - name: Build and push database image to Docker hub
         uses: docker/build-push-action@v6
