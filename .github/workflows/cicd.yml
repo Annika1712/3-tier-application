@@ -2,7 +2,7 @@ name: Build 3-tier-application in eks
 
 on:
   push:
-    branches: [ "kubernetes-cicd" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -70,9 +70,6 @@ jobs:
           kubectl apply -f backend-deployment.yml
       
       - name: Alter configmap and apply
-        # sed breakdown: with s and the following character you indicate which symbol is used as a seperator. 
-        # with -i you indicate you're going to edit the file in place
-        # API_URL: and anything that follows (*) within the line (.) is being replaced by API_URL: $BACKEND_HOST(the value of this) in the file frontend-configmap.yml
         run: |
           export BACKEND_HOSTNAME=$('kubectl -n annika get svc backend-lb -o jsonpath=/'{.status.loadBalancer.ingress[0].hostname}/'')
           envsubst < frontend-configmap.yml | kubectl apply -f -
