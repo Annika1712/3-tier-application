@@ -69,10 +69,15 @@ jobs:
           kubectl apply -f backend-loadbalancer.yml
           kubectl apply -f backend-deployment.yml
       
+      - name: Export Backend
+        run: |
+            export BACKEND_HOSTNAME=$(kubectl -n annika get svc backend-lb -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+            echo $BACKEND_HOSTNAME
+      
       - name: Alter configmap and apply
         run: |
-          export BACKEND_HOSTNAME=$(kubectl -n annika get svc backend-lb -o jsonpath=/'{.status.loadBalancer.ingress[0].hostname}')
-          envsubst < frontend-configmap.yml | kubectl apply -f -
+         export BACKEND_HOSTNAME=$(kubectl -n annika get svc backend-lb -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+         envsubst < frontend-configmap.yml | kubectl apply -f -
 
       - name: Apply frontend kubernetes manifest files
         run: |
