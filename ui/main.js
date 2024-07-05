@@ -5,8 +5,9 @@ $(document).ready(function () {
     let activeUser = {};
     
     async function getText(file) {
-        let response = await fetch(file);
-        let config = await response.text();
+        let myObject = await fetch(file);
+        let myText = await myObject.text();
+        const config = JSON.parse(myText);
         baseUrl = config.API_URL;
         // Initial load of users
         getUsers();
