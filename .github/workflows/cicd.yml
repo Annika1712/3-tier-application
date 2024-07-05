@@ -74,9 +74,8 @@ jobs:
         # with -i you indicate you're going to edit the file in place
         # API_URL: and anything that follows (*) within the line (.) is being replaced by API_URL: $BACKEND_HOST(the value of this) in the file frontend-configmap.yml
         run: |
-          export BACKEND_HOSTNAME=$(kubectl -n annika get svc backend-lb -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-          sed -i "s@\"API_URL\":.*@\"API_URL\": \"${BACKEND_HOSTNAME}/\"@" frontend-configmap.yml
-          kubectl apply -f frontend-configmap.yml
+          export BACKEND_HOSTNAME=$('kubectl -n annika get svc backend-lb -o jsonpath=/'{.status.loadBalancer.ingress[0].hostname}/'')
+          envsubst < frontend-configmap.yml | kubectl apply -f -
 
       - name: Apply frontend kubernetes manifest files
         run: |
