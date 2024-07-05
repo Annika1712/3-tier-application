@@ -17,7 +17,8 @@ $(document).ready(function () {
 
     // Function to get users from 'api/user' endpoint and display them in the table
     function getUsers() {
-        $.get(`${baseUrl}api/user`, function (response) {
+        let url = baseUrl + 'api/user';
+        $.get(url, function (response) {
             // Clear the table body
             $('#userTableBody').empty();
 
