@@ -3,22 +3,18 @@ $(document).ready(function () {
     let baseUrl = '';
     let users = [];
     let activeUser = {};
-
+    
     async function getText(file) {
-        try {
-          let response = await fetch(file);
-          let config = await response.json();
-          baseUrl = config.API_URL;
-          getUsers(); // Call getUsers after retrieving config data
-        } catch (error) {
-          console.error('Error fetching the config:', error);
-        }
-      }
+        let response = await fetch(file);
+        let config = await response.text();
+        baseUrl = config.API_URL;
+        // Initial load of users
+        getUsers();
+    }
 
     // Function to get users from 'api/user' endpoint and display them in the table
     function getUsers() {
-        let url = baseUrl + 'api/user';
-        $.get(url, function (response) {
+        $.get(`${baseUrl}api/user`, function (response) {
             // Clear the table body
             $('#userTableBody').empty();
 
@@ -167,5 +163,5 @@ $(document).ready(function () {
         var userId = $(this).data('id');
         deleteUser(userId);
     });
-
+    
 });
