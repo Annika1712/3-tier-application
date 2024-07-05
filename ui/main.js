@@ -1,8 +1,20 @@
 // Wait for the document to be ready
 $(document).ready(function () {
-    let baseUrl = '@Configuration["API_URL"]';
+    let baseUrl = '';
     let users = [];
     let activeUser = {};
+
+    async function getText(file) {
+        try {
+          let response = await fetch(file);
+          let config = await response.json();
+          baseUrl = config.API_URL;
+          getUsers(); // Call getUsers after retrieving config data
+        } catch (error) {
+          console.error('Error fetching the config:', error);
+        }
+      }
+
     // Function to get users from 'api/user' endpoint and display them in the table
     function getUsers() {
         $.get(`${baseUrl}api/user`, function (response) {
@@ -132,6 +144,8 @@ $(document).ready(function () {
         }
     }
 
+    getText('./configs/config.json');
+
     // Event handlers
     $('#addUserButton').click(addUser);
     $('#saveUserButton').click(saveUser);
@@ -153,15 +167,4 @@ $(document).ready(function () {
         deleteUser(userId);
     });
 
-    
-    
-    async function getText(file) {
-        let myObject = await fetch(file);
-        let myText = await myObject.text();
-        const config = JSON.parse(myText);
-        baseUrl = config.API_URL;
-        // Initial load of users
-        getUsers();
-    }
-    getText('./configs/config.json');
 });
