@@ -5,7 +5,7 @@ metadata:
   name: nginx-ingress
   namespace: annika
 spec:
-  ingressClassName: nginx
+  ingressClassName: webapprouting.kubernetes.azure.com
   rules:
     - http:
         paths:

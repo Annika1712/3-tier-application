@@ -1,14 +1,12 @@
----
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata: 
-  name: efs-pvc-annika
+metadata:
+  name: database-pvc
   namespace: annika
 spec:
-  storageClassName: efs-sc
-  volumeName: efs-pv-annika
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
+  storageClassName: default
   resources:
     requests:
       storage: 5Gi
