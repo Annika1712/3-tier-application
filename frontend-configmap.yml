@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: frontend-configmap
+  namespace: annika
+data:
+  config.json: |
+    { 
+      "API_URL": "http://4.255.20.118/" 
+    }

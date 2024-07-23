@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-deployment
+  labels:
+    app: postgres
+  namespace: annika
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template: 
+    metadata:
+      name: postgres
+      labels:
+        app: postgres
+    spec: 
+      containers:
+        - name: basic3tier
+          image: postgres:latest
+          env:
+            - name: POSTGRES_DB
+              value: basic3tier
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: admin123
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            subPath: data
+            name: volume
+      volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: database-pvc
+
