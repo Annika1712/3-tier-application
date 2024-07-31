@@ -12,8 +12,8 @@
         name: frontend:latest
         path: /home/ubuntu/ui
         rebuild: always
-        args:
-          BACKEND_IP: "3.72.113.128"
+        args: 
+          LOADBALANCER: "alb-main-2092443240.eu-central-1.elb.amazonaws.com"
 
     - name: Start frontend
       community.docker.docker_container:

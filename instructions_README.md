@@ -34,7 +34,7 @@ When docker is installed on the EC2 machines, you can deploy the 3-tier-applicat
 4. Run 'ansible-playbook main.yml' 
 
 ## Access the website
-You can access the website with the public ip of the frontend.
+You can access the website with the public ip of the loadbalancer.
 
 
 
