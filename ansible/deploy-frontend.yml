@@ -1,0 +1,26 @@
+- name: Deploy frontend
+  hosts: frontend
+  become: true
+  tasks:
+    - name: Copy Dockerfile to host
+      ansible.builtin.copy:
+        src: ../docker/ui
+        dest: /home/ubuntu
+
+    - name: Build frontend
+      community.docker.docker_image_build:
+        name: frontend:latest
+        path: /home/ubuntu/ui
+        rebuild: always
+        args:
+          BACKEND_IP: "3.72.113.128"
+
+    - name: Start frontend
+      community.docker.docker_container:
+        name: frontend
+        image: frontend:latest
+        state: started
+        recreate: true
+        published_ports:
+          - 80:80
+          
