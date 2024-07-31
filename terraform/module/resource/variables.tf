@@ -9,6 +9,13 @@ variable "instance" {
 
 }
 
+variable "loadbalancer_ports" {
+  description = "ports that need to enabled for the loadbalancer to function properly"
+  type = list(number)
+  default = [80]
+
+}
+
 variable "region" {
   description = "AWS Region being used for deployment"
   type        = string
@@ -38,6 +45,14 @@ variable "subnet" {
     id         = string
     cidr_block = string
   }))
+}
+
+variable "loadbalancer-subnet" {
+  description = "ID and cidr_block retrieved from infrastructure module"
+  type = object({
+    id         = string
+    cidr_block = string
+  })
 }
 
 variable "ssh_key" {
