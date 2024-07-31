@@ -1,4 +1,4 @@
-resource "local_file" "name" {
+resource "local_file" "ansible_inventory" {
   content = templatefile("${path.module}/hosts.tftpl", local.vars)
   filename = "${path.root}/../ansible/hosts.yml"
 }
