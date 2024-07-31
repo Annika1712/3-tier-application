@@ -1,0 +1,18 @@
+webservers:
+  hosts: 
+    frontend: 
+      ansible_host: ${instance_ips.frontend}
+    backend:
+      ansible_host: ${instance_ips.backend}
+
+databases:
+  hosts:
+    postgres: 
+      ansible_host: ${instance_ips.database}
+
+all:
+  vars:
+    ansible_user: ubuntu
+    ansible_connection: ssh
+    ansible_ssh_private_key_file: ../${ssh_key}.pem
+  
