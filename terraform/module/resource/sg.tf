@@ -1,3 +1,28 @@
+resource "aws_security_group" "loadbalancer" {
+  name        = "Allow-all-loadbalance-traffic"
+  description = "Allow traffic on public VM"
+  vpc_id      = var.vpc.id
+
+  dynamic "ingress" {
+    for_each = var.loadbalancer_ports
+    content {
+      description = "Allow ${ingress.value} inbound traffic"
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+
+  egress {
+    description = "Allow all traffic"
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_security_group" "allow_all" {
   #Create a security group for each instance
   for_each    = var.instance

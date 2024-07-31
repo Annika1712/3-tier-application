@@ -7,7 +7,24 @@ data "aws_availability_zones" "filter_region" {
   }
 }
 
-resource "aws_subnet" "this" {
+resource "aws_subnet" "public" {
+  vpc_id = aws_vpc.this.id
+
+  #Get the cidr_block from the vpc, move the netmask with 8 bits and start from the first space
+  cidr_block = cidrsubnet(aws_vpc.this.cidr_block, 8, 0)
+
+  availability_zone = data.aws_availability_zones.filter_region.names[0]
+
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name      = "loadbalancer"
+    "Project" = var.project_name
+  }
+
+}
+
+resource "aws_subnet" "private" {
   count = var.subnet_count
 
   vpc_id = aws_vpc.this.id

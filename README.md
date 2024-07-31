@@ -8,7 +8,7 @@ Teammembers:
 - Annika Strooper,
 - Chi Thien Pham
 
-In the branches you can find several approaches, like kubernetes (minikube, eks, aks) or AWS LB and below you can find the original approach we decided on in the team.
+In the branches you can find several approaches, like kubernetes (minikube, eks, aks) or AWS LB and below you can find the original approach we decided on in the team. Instructions for running the project
 
 ## Project objectives
 

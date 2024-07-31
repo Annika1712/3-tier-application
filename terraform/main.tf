@@ -19,6 +19,7 @@ module "resource" {
 
   #Variables
   ssh_key = "annika-mykey"
+  loadbalancer_ports = [80, 22] 
   instance = {
     "frontend" = {
       subnet_name = "subnet1"
@@ -38,10 +39,16 @@ module "resource" {
   region       = module.main.region
   vpc          = module.main.vpc
   subnet       = module.main.subnet
+  loadbalancer-subnet = module.main.loadbalancer-subnet
 
 }
 
-output "ip" {
-  value = module.resource.ip
+output "private-ip" {
+  value = module.resource.private-ip
+  
+}
+
+output "public-ip" {
+  value = module.resource.public-ip
   
 }
