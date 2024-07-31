@@ -29,7 +29,7 @@ jobs:
       - name: Build and push frontend image to Docker hub
         uses: docker/build-push-action@v6
         with:
-          context: ./ui
+          context: ./docker/ui
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/basic3tier-frontend:latest
           build-args: |
@@ -38,7 +38,7 @@ jobs:
       - name: Build and push backend image to Docker hub
         uses: docker/build-push-action@v6
         with:
-          context: ./api
+          context: ./docker/api
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/basic3tier-backend:latest
       
