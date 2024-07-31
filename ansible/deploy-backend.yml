@@ -21,8 +21,8 @@
         published_ports:
           - 80:80
         env:
-          POSTGRES_HOST: '3.127.237.53'
-          POSTGRES_PORT: '5342'
+          POSTGRES_HOST: "3.127.237.53"
+          POSTGRES_PORT: 5342
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: admin123
           POSTGRES_DB: basic3tier
