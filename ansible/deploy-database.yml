@@ -1,0 +1,19 @@
+- name: Deploy postgres
+  hosts: postgres
+  become: true
+  tasks:
+    - name: Start postgres
+      community.docker.docker_container:
+        name: postgres
+        image: postgres:latest
+        state: started
+        published_ports:
+          - 5432:5432
+        env: 
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: admin123
+          POSTGRES_DB: basic3tier
+        mounts: 
+          - source: pgdata
+            target: /var/lib/postgresql/data
+

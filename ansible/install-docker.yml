@@ -1,0 +1,14 @@
+- name: Install docker
+  hosts: all
+  become: true
+  tasks:
+    # https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
+    - name: Download Docker install script
+      ansible.builtin.uri:
+        url: https://get.docker.com
+        dest: /home/ubuntu/install-docker.sh
+        creates: /home/ubuntu/install-docker.sh
+        
+    - name: Run Docker install script
+      ansible.builtin.command: sh /home/ubuntu/install-docker.sh
+      become: true
