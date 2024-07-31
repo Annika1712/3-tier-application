@@ -7,5 +7,5 @@ metadata:
 data:
   config.json: |
     { 
-      "API_URL": "$BACKEND_HOSTNAME/" 
+      "API_URL": "http://aa7e183974fd54de896b791899fc1795-1955576507.eu-central-1.elb.amazonaws.com/" 
     }

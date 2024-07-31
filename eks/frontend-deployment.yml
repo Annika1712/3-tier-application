@@ -26,7 +26,7 @@ spec:
                 path: config.json
       containers:
         - name: frontend
-          image: annika1712/eks-basic3tier-frontend:latest
+          image: annika1712/frontend:v1
           ports:
             - containerPort: 80
           volumeMounts: 
