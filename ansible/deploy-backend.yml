@@ -11,6 +11,7 @@
       community.docker.docker_image_build:
         name: backend:latest
         path: /home/ubuntu/api
+        rebuild: always
           
     - name: Start backend
       community.docker.docker_container:
@@ -21,8 +22,7 @@
         published_ports:
           - 80:80
         env:
-          POSTGRES_HOST: "3.127.237.53"
-          POSTGRES_PORT: 5342
+          POSTGRES_HOST: "192.168.3.96"
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: admin123
           POSTGRES_DB: basic3tier
