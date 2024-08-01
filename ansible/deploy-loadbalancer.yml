@@ -1,0 +1,22 @@
+---
+- name: Setup nginx server
+  hosts: loadbalancer
+  become: true
+  tasks:
+    - name: Install nginx
+      apt: 
+        name: nginx
+        state: present
+        update_cache: true
+        
+    - name: Upload loadbalancer config
+      template: 
+        src: loadbalancer.tpl 
+        dest: /etc/nginx/conf.d/loadbalancer.conf
+      notify: restart nginx
+      
+  handlers:
+    - name: restart nginx
+      service: 
+        name: nginx 
+        state: restarted

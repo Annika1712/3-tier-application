@@ -1,0 +1,29 @@
+- name: Deploy backend
+  hosts: backend
+  become: true
+  tasks:
+    - name: Copy Dockerfile to host
+      ansible.builtin.copy:
+        src: ../docker/api
+        dest: /home/ubuntu
+
+    - name: Build backend
+      community.docker.docker_image_build:
+        name: backend:latest
+        path: /home/ubuntu/api
+        rebuild: always
+          
+    - name: Start backend
+      community.docker.docker_container:
+        name: backend
+        image: backend:latest
+        state: started
+        recreate: true
+        published_ports:
+          - 80:80
+        env:
+          POSTGRES_HOST: "192.168.3.96"
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: admin123
+          POSTGRES_DB: basic3tier
+
