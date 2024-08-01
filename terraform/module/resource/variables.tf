@@ -46,3 +46,9 @@ variable "ssh_key" {
   default = ""
   
 }
+
+variable "alb_arn" {
+  type = string
+  description = "arn of the load balancer retrieved from the infrastructure module"
+  
+}

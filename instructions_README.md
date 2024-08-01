@@ -20,6 +20,8 @@ You start applying the terraform code with.
 To apply the application we're using ansible. So as a prerequisite you need to have ansible installed.
 In the ansible code the community.docker collection is being used. Make sure you have it installed by running 'ansible-galaxy collection list' For further instructions see: [this link](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_image_build_module.html#ansible-collections-community-docker-docker-image-build-module-requirements)
 
+Secondly, make sure you update deploy-backend.yml (with the ip of postgres) and you'll provide the ip/dns of the loadbalancer in the deploy-frontend.yml. Everything that is required is given as output from terraform.
+
 ### First Ansible run
 Next, Ansible makes use of SSH, so please have logged into the hosts atleast once before running ansible. This is to make sure your hosts are added to the known_hosts. For ease, ping.yml is included. 
 
@@ -34,8 +36,5 @@ When docker is installed on the EC2 machines, you can deploy the 3-tier-applicat
 4. Run 'ansible-playbook main.yml' 
 
 ## Access the website
-You can access the website with the public ip of the frontend.
-
-
-
+You can access the website with the public dns of the loadbalancer.
 
