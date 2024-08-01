@@ -1,4 +1,4 @@
-# Prerequisites
+# instructions
 
 ## Terraform
 Before you can apply the terraform code you define in the main.tf:
@@ -14,6 +14,7 @@ You start applying the terraform code with.
 2. 'terraform init'
 3. 'terraform plan'
 4. 'terraform apply'
+
 
 
 
